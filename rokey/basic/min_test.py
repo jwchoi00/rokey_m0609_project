@@ -78,14 +78,14 @@ def main():
     upcup_pos = [277.42,-222.85,77.97,47.70,180,47.26]# z = 57.97
     delta_z = [0,0,-20,0,0,0]
     des_pos=[343.53,-29.69,342.03,109.65,-180,103.84] #ori z = 285 (그립퍼 폭이 0인 상태에서 측정한 높이)
-    height= 285 # 탑의 높이 약 342mm 
-    # movel([0,0,10,0,0,0],vel=30,acc=30,ref=DR_BASE,mod=DR_FC_MOD_REL) # 반대로 뒤집어 진 위치로 z축 다운
-    # movel(upcup_pos,vel=30,acc=30,ref=DR_BASE,mod=DR_FC_MOD_ABS) # 반대로 뒤집어 진 위치 + z 20 지점으로 이동
-    # movel(delta_z,vel=30,acc=30,ref=DR_BASE,mod=DR_FC_MOD_REL) # 반대로 뒤집어 진 위치로 z축 다운
-    # close()
-    # movel([0,0,height,0,0,0],vel=VEL,acc=ACC,ref=DR_BASE,mod=DR_FC_MOD_REL) # 바로 이동하면 부딪히니까 탑 높이까지 올려 이동
-    # movel(des_pos,vel=VEL,acc=ACC,ref=DR_BASE) # 탑이 쌓여있는 위치로 이동
-    # open()
+    height= 285 # 탑의 높이 약 342mm
+    movel([0,0,10,0,0,0],vel=30,acc=30,ref=DR_BASE,mod=DR_FC_MOD_REL) # 반대로 뒤집어 진 위치로 z축 다운
+    movel(upcup_pos,vel=30,acc=30,ref=DR_BASE,mod=DR_FC_MOD_ABS) # 반대로 뒤집어 진 위치 + z 20 지점으로 이동
+    movel(delta_z,vel=30,acc=30,ref=DR_BASE,mod=DR_FC_MOD_REL) # 반대로 뒤집어 진 위치로 z축 다운
+    close()
+    movel([0,0,height,0,0,0],vel=VEL,acc=ACC,ref=DR_BASE,mod=DR_FC_MOD_REL) # 바로 이동하면 부딪히니까 탑 높이까지 올려 이동
+    movel(des_pos,vel=VEL,acc=ACC,ref=DR_BASE) # 탑이 쌓여있는 위치로 이동
+    open()
 
     ### 높이 테스트
     # movel(upcup_pos,vel=30,acc=30,ref=DR_BASE,mod=DR_FC_MOD_ABS) # 반대로 뒤집어 진 위치 + z 20 지점으로 이동

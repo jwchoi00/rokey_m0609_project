@@ -167,7 +167,6 @@ def main(args=None):
             point_home = posj(0.01,0.46,81.73,0.01,97.79,-0.07) #홈 위치로 이동
             move_down_for_cup = posx(0,0,20,0,0,0)
             move_up_for_cup = posx(0,0,-10,0,0,0)
-            move_down_for_cup_check = posx(0,0,250,0,0,0)
             move_up_for_cup_pick = posx(0,0,-120,0,0,0)
             move_front_for_cup = posx(100,0,0,0,0,0)
             move_back_for_cup = posx(-100,0,0,0,0,0)

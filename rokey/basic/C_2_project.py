@@ -226,38 +226,38 @@ def main(args=None):
 
     def reverse_cup(position_setting,pick_for_revers, pick, drop):# 필요 데이터. 첫 포지션, 컵을 뒤집을 위치, 컵을 잡을 위치, 컵을 놓을 위치
         gripper_open()
-        #print("position_setting : ",position_setting)
+        print("position_setting : ",position_setting)
         movej(position_setting,vel=CUP_VEL, acc=CUP_ACC)
-        #print("pick_for_revers : ",pick_for_revers)
+        print("pick_for_revers : ",pick_for_revers)
         movej(pick_for_revers,vel=CUP_VEL, acc=CUP_ACC)
         gripper_close()
         pick_for_revers_up = fkin(pick_for_revers, DR_BASE)
         pick_for_revers_up[2] += 100#posx
-        #print("pick_for_revers_up : ",pick_for_revers_up)
+        print("pick_for_revers_up : ",pick_for_revers_up)
         movel(pick_for_revers_up,vel=CUP_VEL_L, acc=CUP_ACC_L)
         pick_for_revers_up[5] -= 180
-        #print("pick_for_revers_up : ",pick_for_revers_up)
+        print("pick_for_revers_up : ",pick_for_revers_up)
         movel(pick_for_revers_up,vel=CUP_VEL_L, acc=CUP_ACC_L)
         pick_for_revers_up[2] -= 100#posx
-        #print("pick_for_revers_up : ",pick_for_revers_up)
+        print("pick_for_revers_up : ",pick_for_revers_up)
         movel(pick_for_revers_up,vel=CUP_VEL_L, acc=CUP_ACC_L)
         gripper_open()
         pick_for_revers_up[1] -= 100#posx
-        #print("pick_for_revers_up : ",pick_for_revers_up)
+        print("pick_for_revers_up : ",pick_for_revers_up)
         movel(pick_for_revers_up,vel=CUP_VEL_L, acc=CUP_ACC_L)
-        #print("home : [0,0,90,0,90,0]")
+        print("home : [0,0,90,0,90,0]")
         movej([0,0,90,0,90,0],vel=CUP_VEL, acc=CUP_ACC)
         pick[2] += 70
-        #print("pick : ",pick)
+        print("pick : ",pick)
         movel(pick,vel=CUP_VEL_L, acc=CUP_ACC_L)
         pick[2] -= 70
-        #print("pick : ",pick)
+        print("pick : ",pick)
         movel(pick,vel=CUP_VEL_L, acc=CUP_ACC_L)
         gripper_close()
         pick[2] += 70
-        #print("pick : " ,pick)
+        print("pick : " ,pick)
         movel(pick,vel=CUP_VEL_L, acc=CUP_ACC_L)
-        #print(" drop : ",drop)
+        print(" drop : ",drop)
         movel(drop,vel=CUP_VEL_L, acc=CUP_ACC_L)
         gripper_open()
 ######################################################################################################
@@ -275,8 +275,8 @@ def main(args=None):
         third_floor_point = posx([center_point[0], center_point[1],300,0,-180,0])
         # Decrease x, increase y
         first_floor_points = calculate_triangle_points(start_position, cup_length=80, cup_count=6, x_direction_sign=-1, y_direction_sign=1)
-        #print("Decrease X, Increase Y:", first_floor_points)
-        #print("center_of triangle point:", center_point)
+        print("Decrease X, Increase Y:", first_floor_points)
+        print("center_of triangle point:", center_point)
         gripper_open()
         movej(posj(0,0,90,0,90,0),v=50,acc=100)
         #movel(point_home, v=50, a= 100,ref=DR_BASE) #홈 위치로 이동
@@ -289,18 +289,18 @@ def main(args=None):
         #뒤집은 컵 놓기
 
         #1층 컵 쌓기 시작
-        #print(first_floor_points)
+        print(first_floor_points)
         print("1층 컵 쌓기 시작")
         for index in range(0, len(first_floor_points)):
-            #print(f"current_index: {index}")
+            print(f"current_index: {index}")
             current_cup_position = get_current_posx()[0]
             check_cup_position_and_pick(current_cup_position)
             #print(f"currennt cup cup position_1:{current_cup_position}")
-            #print("cup pick End")
+            print("cup pick End")
             #print(posx(first_floor_points[index]))
             movel(posx(first_floor_points[index]),v=VELOCITY, a=ACC, ref=DR_BASE, mod=DR_MV_MOD_ABS)
             ###################첫번째 포인트 도착
-            #print("go to first point")
+            print("go to first point")
             current_cup_position = get_current_posx()[0]
             movel(move_down_for_cup_release, v=VELOCITY, a=ACC, ref=DR_TOOL, mod=DR_MV_MOD_REL)
             #print(f"currennt cup cup position_2:{current_cup_position}")
@@ -310,22 +310,22 @@ def main(args=None):
             point_home = posx(405.25,230.35,240-((index+1)*10),0,-180,0)
             movel(point_home, v=VELOCITY, a= ACC) #홈 위치로 이동
             current_cup_position = get_current_posx()[0]
-            #print(f"currennt cup cup position_3: {current_cup_position}")
-
+            print(f"currennt cup cup position_3: {current_cup_position}")
+    
         second_floor_points = calculate_triangle_points(second_floor_start_position, cup_length=80, cup_count=3, x_direction_sign=-1, y_direction_sign=1)
-        #print(second_floor_points)
+        print(second_floor_points)
         print("2층 컵 쌓기 시작")
         #2층 컵 쌓기 시작
         for index in range(0, len(second_floor_points)):
-            #print(f"current_index: {index}")
+            print(f"current_index: {index}")
             current_cup_position,_ = get_current_posx()
             check_cup_position_and_pick(current_cup_position)
-            #print(f"currennt cup cup position_1:{current_cup_position}")
-            #print("cup pick End")
+            print(f"currennt cup cup position_1:{current_cup_position}")
+            print("cup pick End")
             movel(posx(second_floor_points[index]),v=VELOCITY, a=ACC, ref=DR_BASE, mod=DR_MV_MOD_ABS)
             #mwait()
             ###################첫번째 포인트 도착
-            #print("go to first point")
+            print("go to first point")
             current_cup_position,_ = get_current_posx()
             #print(f"currennt cup cup position_2:{current_cup_position}")
             ####################컵 놓기 시작
@@ -337,29 +337,29 @@ def main(args=None):
             movel(point_home, v=VELOCITY, a= ACC,ref=DR_BASE) #홈 위치로 이동
             #mwait()
             current_cup_position = get_current_posx()[0]
-            #print(f"currennt cup cup position_3: {current_cup_position}")
+            print(f"currennt cup cup position_3: {current_cup_position}")
 
         print("3층 컵 쌓기 시작")
         #3층 컵 쌓기
-        #print(f"current_index: {index}")
+        print(f"current_index: {index}")
         current_cup_position = get_current_posx()[0]
         check_cup_position_and_pick(current_cup_position)
-        #print(f"currennt cup cup position_1:{current_cup_position}")
-        #print("cup pick End")
+        print(f"currennt cup cup position_1:{current_cup_position}")
+        print("cup pick End")
         movel(posx(current_cup_position[0],current_cup_position[1],300,current_cup_position[3],current_cup_position[4],current_cup_position[5]),v=VELOCITY, a=ACC,ref=DR_BASE, mod=DR_MV_MOD_ABS)
-        #print("집고 들기 완료")
+        print("집고 들기 완료")
         movel(posx(third_floor_point),v=VELOCITY, a=ACC, ref=DR_BASE, mod=DR_MV_MOD_ABS)
         ###################첫번째 포인트 도착
-        #print("go to thrid point")
+        print("go to thrid point")
         current_cup_position = get_current_posx()[0]
-        #print(f"currennt cup cup position_2:{current_cup_position}")
+        print(f"currennt cup cup position_2:{current_cup_position}")
         ####################컵 놓기 시작
         check_cup_position_and_release_for_final(third_floor_point)
         ####################컵 놓기 끝 컵 잡는 위치로 복귀
         movel(posx(current_cup_position[0],current_cup_position[1],350,current_cup_position[3],current_cup_position[4],current_cup_position[5]),v=VELOCITY, a=ACC,ref=DR_BASE, mod=DR_MV_MOD_ABS) #컵 잡는 위치로 복귀
         current_cup_position = get_current_posx()[0]
-        #print(f"currennt cup cup position_3: {current_cup_position}")
-        #print("탑 쌓기 끝")
+        print(f"currennt cup cup position_3: {current_cup_position}")
+        print("탑 쌓기 끝")
 
         #################마지막 컵 잡기
         upcup_pos = [277.42,-222.85,77.97,47.70,180,47.26]# z = 57.97

@@ -34,7 +34,6 @@ def main(args=None):
         print("그리퍼 열림")
         DS.wait(0.5)
         #DS.mwait(0.5)
-        
     def z_axis_alignment(axes_data, joint_data):
         vect = [0, 0, -1]
         DS.parallel_axis(vect, DS.DR_AXIS_Z, DS.DR_BASE)
